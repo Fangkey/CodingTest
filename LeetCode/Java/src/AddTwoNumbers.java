@@ -3,10 +3,11 @@ import linkedlist.LinkedList;
 
 /*
  * LeetCode: 2. Add Two Numbers
- * Date: 2017.11.05
- * Time: 43 min, include ListNode, LinkedList
+ * Finish Time: 2017.11.05 23:37
+ * Time: 43min, include ListNode, LinkedList
+ * Wrong Submissions: 0
  */
-class Solution {
+class Solution2 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
         ListNode head = dummy;
@@ -52,7 +53,7 @@ class Solution {
     }
     
     public static void main(String[] args) {
-    	Solution s = new Solution();
+    	Solution2 s = new Solution2();
     	LinkedList linkedList = new LinkedList();
     	
     	int[] a1 = {1, 2, 3};
