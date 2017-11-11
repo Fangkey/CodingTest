@@ -8,14 +8,14 @@ import java.util.HashSet;
  */
 class Solution3 {
     public int lengthOfLongestSubstring(String s) {
-        int max_length = 0;
+        int maxLength = 0;
         HashSet<Character> char_set = new HashSet<Character>();
         for (int i = 0; i < s.length(); i++) {
         	char_set.clear();
         	for (int j = i; j < s.length(); j++) {
         		if (char_set.contains(s.charAt(j))) {
-        			if (char_set.size() > max_length) {
-        				max_length = char_set.size();
+        			if (char_set.size() > maxLength) {
+        				maxLength = char_set.size();
         			}
         			// Wrong 3
         			break;
@@ -23,8 +23,8 @@ class Solution3 {
             		char_set.add(s.charAt(j));
             		// Wrong 2
             		if (j == s.length() - 1) {
-            			if (char_set.size() > max_length) {
-            				max_length = char_set.size();
+            			if (char_set.size() > maxLength) {
+            				maxLength = char_set.size();
             			}
             		}
         		}
@@ -32,10 +32,11 @@ class Solution3 {
         }
         
         // Wrong 1
-        if (char_set.size() > max_length) {
-        	max_length = char_set.size();
-        }
-        return max_length;
+        // Don't need this
+        //if (char_set.size() > max_length) {
+        //	max_length = char_set.size();
+        //}
+        return maxLength;
     }
     
     public static void main(String[] args) {
