@@ -42,14 +42,14 @@ class Solution(object):
         :type nums: List[int]
         :rtype: void Do not return anything, modify nums in-place instead.
         """
-        last_zero_pos = 0
-        cur = 0
-        while cur < len(nums):
-            if nums[cur] != 0:
-                nums[last_zero_pos], nums[cur] = nums[cur], nums[last_zero_pos]
-                last_zero_pos += 1
-            cur += 1
+        last_non_zero_pos = 0
+        cur_pos = 0
 
+        while cur_pos < len(nums):
+            if nums[cur_pos] != 0:
+                nums[cur_pos], nums[last_non_zero_pos] = nums[last_non_zero_pos], nums[cur_pos]
+                last_non_zero_pos += 1
+            cur_pos += 1
 
 if __name__ == "__main__":
     s = Solution()
@@ -61,7 +61,6 @@ if __name__ == "__main__":
     nums = [1, 0, 1]
     s.moveZeroes(nums)
     print nums
-
 
     nums = [0, 1, 0, 3, 12]
     s.moveZeroes(nums)
