@@ -1,7 +1,7 @@
 from binary_search_tree import BinarySearchTree, TreeNode
 import sys
 
-class Solution(object):
+class Solution1(object):
     def helper(self, root):
         if root is None:
             return -sys.maxint, -sys.maxint
@@ -30,6 +30,37 @@ class Solution(object):
         """
         to_node_max, path_max = self.helper(root)
         return path_max
+
+
+# 2018-05-07 23:41
+# 2018-05-07 23:52
+
+class Solution(object):
+    def get_max(self, root):
+        if root is None:
+            return 0, -sys.maxint
+
+        l_single, l_max = self.get_max(root.left)
+        r_single, r_max = self.get_max(root.right)
+
+        l_single = max(0, l_single)
+        r_single = max(0, r_single)
+
+        cur_max = max(l_max, r_max)
+        if l_single + root.val + r_single > cur_max:
+            cur_max = l_single + root.val + r_single
+
+        cur_single = max(l_single, r_single) + root.val
+        return cur_single, cur_max
+
+    def maxPathSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        r_single, r_max = self.get_max(root)
+        return max(r_single, r_max)
+
 
 if __name__ == "__main__":
     bt = BinarySearchTree()

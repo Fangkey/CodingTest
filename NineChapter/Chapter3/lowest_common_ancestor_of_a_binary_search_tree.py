@@ -41,6 +41,34 @@ class Solution(object):
 
         return p_path[common_len - 1]
 
+# 2018-05-08-00:20
+# 2018-05-08-00:26
+
+class Solution(object):
+    def helper(self, root, p, q):
+        if root is None or root is p or root is q:
+            return root
+
+        l = self.helper(root.left, p, q)
+        r = self.helper(root.right, p, q)
+
+        if l is not None and r is not None:
+            return root
+        if l is not None:
+            return l
+        if r is not None:
+            return r
+
+        return None
+
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        return self.helper(root, p, q)
 
 if __name__ == "__main__":
     bt = BinarySearchTree()

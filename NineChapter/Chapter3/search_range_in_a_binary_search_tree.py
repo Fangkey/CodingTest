@@ -1,7 +1,7 @@
 from binary_search_tree import BinarySearchTree, TreeNode, build_tree
 
 
-class Solution(object):
+class Solution1(object):
     def helper(self, root, a, b, result):
         if root is None:
             return
@@ -16,6 +16,31 @@ class Solution(object):
         self.helper(root, a, b, result)
 
         return result
+
+# 2018-05-08 00:31
+# 2018-05-08 00:38
+
+class Solution(object):
+    def helper(self, root, a, b, result):
+        if root is None:
+            return
+
+        v = root.val
+        if v >= a:
+            self.helper(root.left, a, b, result)
+
+        if v >= a and v <= b:
+            result.append(v)
+
+        if v <= b:
+            self.helper(root.right, a, b, result)
+
+
+    def searchRange(self, root, a, b):
+        result = []
+        self.helper(root, a, b, result)
+        return result
+
 
 
 if __name__ == "__main__":

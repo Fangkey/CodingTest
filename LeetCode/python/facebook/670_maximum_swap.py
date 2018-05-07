@@ -1,4 +1,4 @@
-# coding = utf-8
+# coding=utf-8
 # 2018-05-05 01:12
 # 2018-05-05 01:23 Corner case: 1993
 

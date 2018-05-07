@@ -1,6 +1,6 @@
 from binary_search_tree import BinarySearchTree, TreeNode
 
-class Solution(object):
+class Solution1(object):
     def helper(self, root, result):
         if root is not None:
             v = root.val
@@ -17,6 +17,27 @@ class Solution(object):
         self.helper(root, result)
         return result
 
+
+#2018-05-07 23:54
+#2018-05-07 23:57
+
+class Solution(object):
+    def helper(self, root, result):
+        if root is None:
+            return
+
+        result.append(root.val)
+        self.helper(root.left, result)
+        self.helper(root.right, result)
+
+    def preorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        result = []
+        self.helper(root, result)
+        return result
 
 
 if __name__ == "__main__":

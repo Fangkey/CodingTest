@@ -2,7 +2,7 @@ from binary_search_tree import BinarySearchTree, TreeNode
 
 from collections import deque
 
-class Solution(object):
+class Solution1(object):
     def levelOrder(self, root):
         """
         :type root: TreeNode
@@ -28,6 +28,46 @@ class Solution(object):
             q_size = len(queue)
 
         return result
+
+
+# 2018-05-07 23:12
+# 2018-05-07 23:22
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        from collections import deque
+        q = deque([])
+
+        result = []
+
+        if root is not None:
+            q.append(root)
+
+        while len(q) != 0:
+            size = len(q)
+            level = []
+            for i in range(0, size):
+                cur = q.popleft()
+                level.append(cur.val)
+                if cur.left is not None:
+                    q.append(cur.left)
+                if cur.right is not None:
+                    q.append(cur.right)
+            result.append(level)
+
+        return result
+
 
 
 if __name__ == "__main__":

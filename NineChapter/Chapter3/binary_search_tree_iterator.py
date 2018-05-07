@@ -1,7 +1,7 @@
 from binary_search_tree import BinarySearchTree, TreeNode, build_tree
 
 
-class BSTIterator(object):
+class BSTIterator1(object):
     def __init__(self, root):
         """
         :type root: TreeNode
@@ -38,6 +38,42 @@ class BSTIterator(object):
                 node = node.left
 
         return ret_val
+
+
+# 2018-05-07 23:23
+# 2018-05-07 23:40
+
+class BSTIterator(object):
+    def __init__(self, root):
+        """
+        :type root: TreeNode
+        """
+        self.stack = []
+        while root is not None:
+            self.stack.append(root)
+            root = root.left
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        if len(self.stack) != 0:
+            return True
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        cur = self.stack.pop()
+        ret = cur.val
+
+        if cur.right is not None:
+            cur = cur.right
+            while cur is not None:
+                self.stack.append(cur)
+                cur = cur.left
+
+        return ret
 
 if __name__ == "__main__":
     bt = BinarySearchTree()

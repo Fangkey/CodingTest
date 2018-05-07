@@ -1,6 +1,6 @@
 from binary_search_tree import BinarySearchTree, TreeNode
 
-class Solution(object):
+class Solution1(object):
     def helper(self, root):
         if root is None:
             return True, 0
@@ -16,6 +16,33 @@ class Solution(object):
         """
         is_balanced, depth = self.helper(root)
         return is_balanced
+
+
+
+# 2018-05-07 23:59
+# 2018-05-08 0:03
+
+class Solution(object):
+    def helper(self, root):
+        # if is balanced, return height, else return -1
+        if root is None:
+            return 0
+
+        l = self.helper(root.left)
+        r = self.helper(root.right)
+
+        if l != -1 and r != -1 and abs(l - r) <= 1:
+            return max(l, r) + 1
+        else:
+            return -1
+
+    def isBalanced(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        return not self.helper(root) == -1
+
 
 
 if __name__ == "__main__":

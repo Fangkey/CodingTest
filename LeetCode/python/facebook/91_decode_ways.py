@@ -1,4 +1,4 @@
-# coding = utf-8
+# coding=utf-8
 # 2018-05-01 22:17
 # 2018-05-01 22:34 permutation, time exceeded
 
