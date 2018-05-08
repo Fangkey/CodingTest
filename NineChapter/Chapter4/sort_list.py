@@ -1,6 +1,6 @@
 from linked_list import ListNode, buildLinkedList, printLinkedList
 
-class Solution(object):
+class Solution1(object):
     def findMid(self, head):
         slow = head
         fast = head.next
@@ -44,6 +44,63 @@ class Solution(object):
         left = self.sortList(head)
 
         return self.mergeList(left, right)
+
+
+# 2018-05-09 00:33
+# 2018-05-09 00:46
+
+class Solution(object):
+    def find_pre_mid(self, head):
+        if head is None:
+            return None
+
+        slow = head
+        fast = head.next
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+
+        return slow
+
+    def sortList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if head is None:
+            return None
+
+        if head.next is None:
+            return head
+
+        pre_mid = self.find_pre_mid(head)
+        mid = pre_mid.next
+        pre_mid.next = None
+        left = self.sortList(head)
+        if mid is not None:
+            right = self.sortList(mid)
+        else:
+            right = None
+
+        d = ListNode(0)
+        cur = d
+        while left is not None and right is not None:
+            if left.val > right.val:
+                cur.next = right
+                right = right.next
+            else:
+                cur.next = left
+                left = left.next
+            cur = cur.next
+
+        if left is not None:
+            cur.next = left
+        else:
+            cur.next = right
+
+        return d.next
+
+
 
 if __name__ == "__main__":
     s = Solution()

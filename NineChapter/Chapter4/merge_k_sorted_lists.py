@@ -1,7 +1,7 @@
 from linked_list import ListNode, buildLinkedList, printLinkedList
 from heapq import heappop, heappush
 
-class Solution(object):
+class Solution1(object):
     def mergeKLists(self, lists):
         """
         :type lists: List[ListNode]
@@ -24,6 +24,42 @@ class Solution(object):
                 heappush(h, (node_next.val, node_next))
 
         return dummy.next
+
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+# 2018-05-09 0:15
+# 2018-05-09 0:30
+from heapq import heapify, heappush, heappop
+
+class Solution(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        h = []
+        for i in range(0, len(lists)):
+            n = lists[i]
+            if n is not None:
+                heappush(h, (n.val, n))
+
+        d = ListNode(0)
+        cur = d
+        while len(h) != 0:
+            val, n = heappop(h)
+            cur.next = n
+            cur = cur.next
+            n = n.next
+            if n is not None:
+                heappush(h, (n.val, n))
+
+        return d.next
+
 
 
 if __name__ == "__main__":

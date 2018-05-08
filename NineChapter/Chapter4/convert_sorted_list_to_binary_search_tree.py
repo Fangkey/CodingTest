@@ -48,7 +48,7 @@ class Solution1(object):
         return self.helper(head, None)
 
 
-class Solution(object):
+class Solution2(object):
     current = None
 
     def helper(self, size):
@@ -81,6 +81,42 @@ class Solution(object):
         size = self.get_length(head)
         self.current = head
         return self.helper(size)
+
+
+
+# 2018-08-08 23:12
+# 2018-08-08 23:30
+
+class Solution(object):
+
+    current = None
+
+    def helper(self, size):
+        if size == 0:
+            return None
+
+        left = self.helper(size / 2)
+        root = TreeNode(self.current.val)
+        self.current = self.current.next
+        right = self.helper(size - 1 - size / 2)
+        root.left = left
+        root.right = right
+        return root
+
+    def sortedListToBST(self, head):
+        """
+        :type head: ListNode
+        :rtype: TreeNode
+        """
+        self.current = head
+        size = 0
+        while self.current is not None:
+            self.current = self.current.next
+            size += 1
+
+        self.current = head
+        return self.helper(size)
+
 
 if __name__ == '__main__' and __package__ is None:
     s = Solution()
