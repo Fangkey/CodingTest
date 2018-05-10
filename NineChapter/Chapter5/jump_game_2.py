@@ -1,4 +1,5 @@
-class Solution(object):
+# coding=utf-8
+class Solution1(object):
     def jumpDP(self, nums):
         """
         :type nums: List[int]
@@ -45,6 +46,51 @@ class Solution(object):
 
         return jump
 
+
+# 2018-05-10 23:50
+# 2018-05-10 23:57 DP time exceeded
+# 2018-05-11 00:25 Greedy
+
+class Solution(object):
+    def jumpDP(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        import sys
+        a = [sys.maxint] * (len(nums) + 1)
+        a[0] = 0
+        a[1] = 0
+        for i in range(1, len(nums) + 1):
+            step = nums[i - 1]
+            for j in range(i + 1, min(len(nums) + 1, i + step + 1)):
+                if a[j] > a[i] + 1:
+                    a[j] = a[i] + 1
+        return a[-1]
+
+    def jump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 1 or len(nums) == 0:
+            return 0
+
+        step = 1
+        start = 0
+        end = nums[0]
+        furthest = end
+        while end < len(nums) - 1:
+            for i in range(start, end + 1):
+                if i + nums[i] > furthest:
+                    furthest = i + nums[i]
+            step += 1
+            start = end + 1
+            end = furthest
+            if start > end:
+                return -1
+
+        return step
 
 
 if __name__ == "__main__":
