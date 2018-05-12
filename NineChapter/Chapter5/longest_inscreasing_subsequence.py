@@ -1,3 +1,4 @@
+# coding=utf-8
 class SolutionDP(object):
     def lengthOfLIS(self, nums):
         """
@@ -61,6 +62,28 @@ class Solution(object):
         for i in range(len(nums) - 1, 0, -1):
             if f[i] != sys.maxint:
                 return i
+
+
+# 2018-05-13 01:38
+# 2018-05-13 02:03
+
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 0:
+            return 0
+
+        a = [1] * len(nums)
+        for i in range(1, len(nums)):
+            cur = nums[i]
+            for j in range(i - 1, -1, -1):
+                if nums[j] < cur:
+                    if a[j] + 1 > a[i]:
+                        a[i] = a[j] + 1
+        return max(a)
 
 
 if __name__ == "__main__":
