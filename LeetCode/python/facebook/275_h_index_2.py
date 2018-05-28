@@ -48,7 +48,7 @@ if __name__ == "__main__":
     s = Solution()
 
     # 3
-    citations = [1, 1, 100, 100, 100]
+    citations = [1, 1, 1, 1, 1, 100, 100, 100]
     print s.hIndex(citations)
 
     # 1
