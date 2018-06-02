@@ -1,5 +1,4 @@
 # coding=utf-8
-from pip._vendor.distlib._backport.tarfile import TUREAD
 
 # 2018-05-26 15:05
 # 2018-05-26 16:03

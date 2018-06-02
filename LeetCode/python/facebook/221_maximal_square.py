@@ -2,7 +2,7 @@
 
 
 # 2018-05-26 16:57
-# 2018-05-26 
+# 2018-05-26 17:43
 
 class Solution(object):
     def maximalSquare(self, matrix):
