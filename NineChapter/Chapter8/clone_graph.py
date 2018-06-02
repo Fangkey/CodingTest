@@ -6,7 +6,7 @@ class UndirectedGraphNode:
         self.label = x
         self.neighbors = []
 
-class Solution:
+class Solution1:
     # @param node, a undirected graph node
     # @return a undirected graph node
     def cloneGraph(self, node):
@@ -35,6 +35,36 @@ class Solution:
                 new_node.neighbors.append(new_hashmap[n.label])
 
         return new_hashmap[node.label]
+
+
+# 2018-06-02 14:57
+# 2018-06-02 15:03
+class Solution:
+    # @param node, a undirected graph node
+    # @return a undirected graph node
+    def cloneGraph(self, node):
+        if node is None:
+            return None
+
+        dq = deque([])
+        dq.append(node)
+
+        old_to_new = dict()
+
+        while len(dq) != 0:
+            old = dq.popleft()
+            if old not in old_to_new:
+                new = UndirectedGraphNode(old.label)
+                old_to_new[old] = new
+                for nei in old.neighbors:
+                    dq.append(nei)
+
+        for old, new in old_to_new.items():
+            for nei in old.neighbors:
+                new.neighbors.append(old_to_new[nei])
+
+        return old_to_new[node]
+
 
 
 if __name__ == "__main__":
