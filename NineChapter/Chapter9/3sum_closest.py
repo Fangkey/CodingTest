@@ -1,5 +1,5 @@
 import sys
-class Solution(object):
+class Solution1(object):
     def threeSumClosest(self, nums, target):
         """
         :type nums: List[int]
@@ -29,6 +29,37 @@ class Solution(object):
         return solution[0] + solution[1] + solution[2]
 
 
+# 2018-08-28 12:58
+# 2018-08-28 13:04
+from sys import maxint
+class Solution(object):
+    def threeSumClosest(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        nums = sorted(nums)
+        min_diff = maxint
+        closet = target
+        for i, n in enumerate(nums):
+            s = target - n
+            start = i + 1
+            end = len(nums) - 1
+            while start < end:
+                diff = nums[start] + nums[end] - s
+                if diff == 0:
+                    return target
+                elif abs (diff) < min_diff:
+                    min_diff = diff
+                    closet = n + nums[start] + nums[end]
+                if diff > 0 :
+                    end -= 1
+                else:
+                    start += 1
+        return closet
+        
+        
 if __name__ == "__main__":
     s = Solution()
 
